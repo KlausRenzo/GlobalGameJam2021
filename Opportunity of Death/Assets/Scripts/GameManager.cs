@@ -20,14 +20,9 @@ public class GameManager : MonoBehaviour
 	}
 
 
-	
-	// Start is called before the first frame update
-	void Start()
+	public void ActivateSleepMode(Player player)
 	{
-	}
-
-	// Update is called once per frame
-	void Update()
-	{
+		player.controlEnabled = false;
+		
 	}
 }

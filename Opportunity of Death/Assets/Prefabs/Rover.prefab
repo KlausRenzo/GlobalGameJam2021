@@ -266,6 +266,9 @@ GameObject:
   - component: {fileID: 8921425510329405195}
   - component: {fileID: 5018479310723194782}
   - component: {fileID: 7531588845298347172}
+  - component: {fileID: 5891706510173238898}
+  - component: {fileID: 8118642738932326200}
+  - component: {fileID: 2077242802217051101}
   m_Layer: 0
   m_Name: Rover
   m_TagString: Untagged
@@ -320,21 +323,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSpeed: 0.4
-  acceleration: 0.15
+  acceleration: 0.3
   steeringSpeed: 45
-  accelerationCurve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  torque: 0
-  rigidbody: {fileID: 0}
   terrainLayerMask:
     serializedVersion: 2
     m_Bits: 64
   speed: 0
   rotation: 0
+  controlEnabled: 1
 --- !u!114 &7531588845298347172
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -347,6 +343,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 725bd60d3ee4ad84d80a50f345cbd45a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rangePerEnergy: 200
   leds:
   - {fileID: 4422127131710139767}
   - {fileID: 437793726429208532}
@@ -362,8 +359,52 @@ MonoBehaviour:
   green: {fileID: 2100000, guid: bf02947f583791b49a8da6a1ffe57c2b, type: 2}
   orange: {fileID: 2100000, guid: 8e91fd5cd1dbad44ca52232f088a1e81, type: 2}
   red: {fileID: 2100000, guid: 3c781ce45983b804b8585b53ed9ab702, type: 2}
-  orangeHealth: 6
+  orangeHealth: 5
   redHealth: 3
+  energy: 0
+  rangeDepletionFactor: 1
+  range: 0
+--- !u!114 &5891706510173238898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8820658053612332563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb8289231501f00409a276b781feaafb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &8118642738932326200
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8820658053612332563}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.8408203, y: 0.7656784, z: 1.9378662}
+  m_Center: {x: 0.0064086914, y: 0.6465225, z: -0.09197998}
+--- !u!54 &2077242802217051101
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8820658053612332563}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &8820658054612679991
 GameObject:
   m_ObjectHideFlags: 0
