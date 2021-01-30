@@ -7,22 +7,34 @@ public class Player : MonoBehaviour
 {
 	public float maxSpeed = 1f;
 	public float acceleration = 1f;
-
 	public float steeringSpeed = 1f;
 
+	public AnimationCurve accelerationCurve;
 
 	[SerializeField] private float torque;
 	[SerializeField] private new Rigidbody rigidbody;
 	[SerializeField] private LayerMask terrainLayerMask;
-
+	private Animator animator;
 
 	public float speed;
 	public float rotation;
+
+	private void Start()
+	{
+		animator = GetComponent<Animator>();
+	}
 
 	private void Update()
 	{
 		Controls();
 		AdaptToTerrain();
+		SetAnimatorParameters();
+	}
+
+	private void SetAnimatorParameters()
+	{
+		animator.SetFloat("Speed", speed / maxSpeed);
+		animator.SetFloat("Pitch", transform.rotation.eulerAngles.x);
 	}
 
 	private void AdaptToTerrain()
@@ -47,7 +59,8 @@ public class Player : MonoBehaviour
 		float verticalAxis = Input.GetAxis("Vertical");
 
 		speed = Mathf.Lerp(speed, verticalAxis * maxSpeed, acceleration * Time.deltaTime);
-		transform.position += transform.forward * speed;
+
+		transform.position += transform.forward * speed * maxSpeed;
 		rotation += horizontalAxis * steeringSpeed * Time.deltaTime;
 	}
 }
