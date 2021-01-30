@@ -1,18 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
+using UnityEditor;
 using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
 	[SerializeField] private List<GameObject> leds;
 
-	[SerializeField] private Color off;
-	[SerializeField] private Color green;
-	[SerializeField] private Color orange;
-	[SerializeField] private Color red;
 
-	[SerializeField] private float intensity;
+	[SerializeField] private Material off;
+
+	[SerializeField] private Material green;
+
+	[SerializeField] private Material orange;
+
+	[SerializeField] private Material red;
 
 	[SerializeField] private int orangeHealth;
 	[SerializeField] private int redHealth;
@@ -42,39 +45,37 @@ public class PlayerHealth : MonoBehaviour
 	{
 	}
 
+	[Button]
 	public void UpdateLeds(int value)
 	{
-		Color color = off;
+		Material newMaterial = off;
 		if (value > orangeHealth)
 		{
 			// Full Health
-			color = green;
+			newMaterial = green;
 		}
 		else if (value > redHealth)
 		{
 			// Medium Health
-			color = orange;
+			newMaterial = orange;
 		}
 		else
 		{
 			// Low Health
-			color = red;
+			newMaterial = red;
 		}
 
 		int i = 0;
 		foreach (GameObject led in leds)
 		{
-			var material = led.GetComponent<MeshRenderer>().material;
-			material.EnableKeyword("_EMISSION");
+			var meshRenderer = led.GetComponent<MeshRenderer>();
 			if (i < value)
 			{
-				material.color = color;
-				material.SetColor("_EmissionColor", color * intensity);
+				meshRenderer.material = newMaterial;
 			}
 			else
 			{
-				material.color = color;
-				material.SetColor("_EmissionColor", color * 0.1f);
+				meshRenderer.material = off;
 			}
 
 			i++;
