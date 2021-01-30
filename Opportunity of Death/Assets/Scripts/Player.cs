@@ -19,12 +19,6 @@ public class Player : MonoBehaviour
 	public float speed;
 	public float rotation;
 
-	// Start is called before the first frame update
-	private void Start()
-	{
-	}
-
-	// Update is called once per frame
 	private void Update()
 	{
 		Controls();
@@ -42,16 +36,9 @@ public class Player : MonoBehaviour
 			return;
 		}
 
-
-
+		transform.up = Vector3.Lerp(transform.up, hit.normal, Time.deltaTime * 10);
+		transform.RotateAround(transform.position, transform.up, rotation);
 		transform.position = new Vector3(transform.position.x, hit.point.y, transform.position.z);
-
-		//transform.up = hit.normal;
-		//transform.Rotate(transform.up, rotation);
-
-		transform.up = hit.normal;
-		Vector3 euler = transform.rotation.eulerAngles;
-		transform.rotation = Quaternion.Euler(euler.x, rotation, euler.z);
 	}
 
 	private void Controls()
