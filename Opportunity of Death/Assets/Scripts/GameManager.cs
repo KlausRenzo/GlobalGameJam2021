@@ -46,7 +46,6 @@ public class GameManager : MonoBehaviour
 
 		var randomPos = GetRandomPosition(range);
 
-		//todo cameraFade
 		ui.FadeOn(1f);
 		yield return new WaitForSeconds(1f);
 
@@ -59,7 +58,6 @@ public class GameManager : MonoBehaviour
 		yield return new WaitForSeconds(0.5f);
 		player.controlEnabled = true;
 		yield return new WaitForSeconds(1f);
-		//todo cameraFade
 	}
 
 	public void AddGlitch()

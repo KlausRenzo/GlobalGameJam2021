@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
 
 	[SerializeField] private ParticleSystem[] sparaFumo;
 
+
 	private Animator animator;
 	public RoverEnergy roverEnergy;
 	public RoverInteraction roverInteraction;

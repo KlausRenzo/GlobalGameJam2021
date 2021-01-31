@@ -18,7 +18,7 @@ public class DeeJay : MonoBehaviour
     void Start()
     {
         AmbientSFXStart();
-        AmbientMusicStart();
+       // AmbientMusicStart();
         
         EngineInit();
     }

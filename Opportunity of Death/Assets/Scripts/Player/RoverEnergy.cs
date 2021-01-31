@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Audio;
 using Random = UnityEngine.Random;
 
 public class RoverEnergy : MonoBehaviour
@@ -157,9 +158,16 @@ public class RoverEnergy : MonoBehaviour
 		piecesLost++;
 	}
 
-
+	[SerializeField] private GameObject spark;
+	[SerializeField] private AudioClip sparkSound;
 	private IEnumerator SpawnElement(GameObject piece, Vector3 direction)
 	{
+		Instantiate(spark, piece.transform.position, piece.transform.rotation);
+		var source = this.gameObject.AddComponent<AudioSource>();
+		source.clip = sparkSound;
+		//source.outputAudioMixerGroup = FindObjectOfType<AudioMixer>().outputAudioMixerGroup;
+		source.Play();
+
 		GameObject ragdol = Instantiate(piece, piece.transform.position, piece.transform.rotation);
 		var rb = ragdol.AddComponent<Rigidbody>();
 		ragdol.layer = LayerMask.NameToLayer("onlyTerrain");
@@ -169,6 +177,9 @@ public class RoverEnergy : MonoBehaviour
 
 		yield return new WaitForSeconds(0.5f);
 		ragdol.layer = LayerMask.NameToLayer("Default");
+		
+		yield return new WaitForSeconds(1f);
+		GameObject.Destroy(source);
 	}
 
 	public void RecoverEnergy()

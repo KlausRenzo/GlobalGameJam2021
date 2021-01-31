@@ -338,6 +338,7 @@ MonoBehaviour:
   - {fileID: 4916621095082684002}
   - {fileID: 134151106833244922}
   - {fileID: 4916621095551955432}
+  spark: {fileID: 0}
   roverEnergy: {fileID: 0}
   roverInteraction: {fileID: 0}
   controlEnabled: 1
@@ -385,6 +386,8 @@ MonoBehaviour:
   - {fileID: 3913952015108547638}
   - {fileID: 3168183518874326233}
   range: 0
+  spark: {fileID: 6283820348782409512, guid: e9df4e68398c3244282bef46a43c9d2f, type: 3}
+  sparkSound: {fileID: 8300000, guid: a992b7aa16f5753419c47d8eb478338f, type: 3}
 --- !u!114 &5891706510173238898
 MonoBehaviour:
   m_ObjectHideFlags: 0

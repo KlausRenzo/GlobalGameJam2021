@@ -218,7 +218,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  lightIntensity: 10
+  lightIntensity: 5
   head: {fileID: 6764007302056781529}
   rotationSpeed: 3
 --- !u!54 &873722621760760476
