@@ -1,11 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.Audio;
-using Random = UnityEngine.Random;
 
 public class RoverEnergy : MonoBehaviour
 {

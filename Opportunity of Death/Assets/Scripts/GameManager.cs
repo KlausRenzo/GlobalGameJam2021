@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.Rendering.PostProcessing;
 using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
