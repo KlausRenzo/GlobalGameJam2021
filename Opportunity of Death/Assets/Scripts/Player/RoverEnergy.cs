@@ -43,7 +43,7 @@ public class RoverEnergy : MonoBehaviour
 		}
 	}
 
-	[SerializeField] private float range;
+	[SerializeField] public float range;
 
 	// Start is called before the first frame update
 	void Start()
@@ -162,10 +162,8 @@ public class RoverEnergy : MonoBehaviour
 	[SerializeField] private AudioClip sparkSound;
 	private IEnumerator SpawnElement(GameObject piece, Vector3 direction)
 	{
-		Instantiate(spark, piece.transform.position, piece.transform.rotation);
 		var source = this.gameObject.AddComponent<AudioSource>();
 		source.clip = sparkSound;
-		//source.outputAudioMixerGroup = FindObjectOfType<AudioMixer>().outputAudioMixerGroup;
 		source.Play();
 
 		GameObject ragdol = Instantiate(piece, piece.transform.position, piece.transform.rotation);
@@ -173,7 +171,9 @@ public class RoverEnergy : MonoBehaviour
 		ragdol.layer = LayerMask.NameToLayer("onlyTerrain");
 		rb.AddForce(direction * 300);
 		rb.AddForceAtPosition(-transform.forward * 250, transform.position + transform.up);
-		ragdol.AddComponent<CapsuleCollider>();
+		var collider = ragdol.AddComponent<CapsuleCollider>();
+
+		Instantiate(spark, collider.bounds.center, piece.transform.rotation);
 
 		yield return new WaitForSeconds(0.5f);
 		ragdol.layer = LayerMask.NameToLayer("Default");

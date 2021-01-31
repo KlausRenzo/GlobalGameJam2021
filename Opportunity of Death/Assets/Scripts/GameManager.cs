@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
+using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
@@ -62,12 +64,27 @@ public class GameManager : MonoBehaviour
 
 	public void AddGlitch()
 	{
-		//TODO
+		StartCoroutine(StartGlitchEffect());
+	}
+
+	private IEnumerator StartGlitchEffect()
+	{
+		GlitchEffect glitchEffect = camera.GetComponent<GlitchEffect>();
+		float value = 0;
+		while (Math.Abs(value - 1) > 0.05)
+		{
+			value = Mathf.Lerp(value, 1, Time.deltaTime / 10);
+			glitchEffect.intensity = value;
+			glitchEffect.colorIntensity = value;
+			glitchEffect.flipIntensity = value;
+
+			yield return null;
+		}
 	}
 
 	public void AddBlackFade()
 	{
-		//TODO
+		
 	}
 
 	private Vector3 spawnPosition;
@@ -110,5 +127,10 @@ public class GameManager : MonoBehaviour
 		Gizmos.color = Color.red;
 		Gizmos.DrawSphere(spawnPosition, 50f);
 		Gizmos.DrawLine(spawnPosition, motherBase.position);
+	}
+
+	public void BeaconText(bool b)
+	{
+		ui.BeaconText(b);
 	}
 }

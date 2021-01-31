@@ -43,7 +43,7 @@ public class Player : MonoBehaviour
 
 	private void RoverEnergyOnEnergyLost()
 	{
-		if (roverEnergy.Energy <= 0)
+		if (roverEnergy.range <= 0)
 		{
 			GameManager.Instance.ActivateSleepMode(this);
 		}

@@ -44,6 +44,8 @@ public class Beacon : MonoBehaviour
 		StopCoroutine(nameof(FadeLigthTo));
 		StartCoroutine(FadeLigthTo(true));
 		roverInteraction.EnableBeaconActivation(this);
+
+		GameManager.Instance.BeaconText(true);
 	}
 
 	private void OnTriggerExit(Collider other)
@@ -57,6 +59,7 @@ public class Beacon : MonoBehaviour
 		StartCoroutine(FadeLigthTo(false));
 
 		roverInteraction.DisableBeaconActivation(this);
+		GameManager.Instance.BeaconText(false);
 	}
 
 	private IEnumerator FadeLigthTo(bool b)
