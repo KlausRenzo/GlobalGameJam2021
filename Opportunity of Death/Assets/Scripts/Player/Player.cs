@@ -61,7 +61,7 @@ public class Player : MonoBehaviour
 	{
 		rotation += horizontalAxis * steeringSpeed * Time.deltaTime * steeringMalus * (debugMovement ? 4 : 1);
 
-		speed = Mathf.Lerp(speed, verticalAxis * maxSpeed * speedMalus * (debugMovement ? 4 : 1), acceleration * Time.deltaTime);
+		speed = Mathf.Lerp(speed, verticalAxis * maxSpeed * speedMalus * (debugMovement ? 8 : 1), acceleration * Time.deltaTime);
 		Vector3 deltaPostion = transform.forward * speed * maxSpeed;
 		transform.position += deltaPostion;
 
