@@ -59,13 +59,13 @@ public class Player : MonoBehaviour
 
 	private void Move()
 	{
-		rotation += horizontalAxis * steeringSpeed * Time.deltaTime * steeringMalus;
+		rotation += horizontalAxis * steeringSpeed * Time.deltaTime * steeringMalus * (debugMovement ? 4 : 1);
 
-		speed = Mathf.Lerp(speed, verticalAxis * maxSpeed * speedMalus, acceleration * Time.deltaTime);
+		speed = Mathf.Lerp(speed, verticalAxis * maxSpeed * speedMalus * (debugMovement ? 4 : 1), acceleration * Time.deltaTime);
 		Vector3 deltaPostion = transform.forward * speed * maxSpeed;
 		transform.position += deltaPostion;
 
-		roverEnergy.LoseRange(deltaPostion.magnitude);
+		roverEnergy.LoseRange(deltaPostion.magnitude * (debugMovement ? 1/4 : 1));
 	}
 
 	private void SetAnimatorParameters()
@@ -118,7 +118,12 @@ public class Player : MonoBehaviour
 		{
 			roverEnergy.LosePiece();
 		}
+
+		debugMovement = Input.GetKey(KeyCode.B);
+
 	}
+
+	private bool debugMovement;
 
 	private void SmokeMachine()
 	{

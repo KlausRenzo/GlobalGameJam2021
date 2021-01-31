@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5965462082497760918}
   - component: {fileID: 6390695932920281716}
   - component: {fileID: 2126844326}
+  - component: {fileID: 7444145599237214738}
   m_Layer: 0
   m_Name: pSphere1
   m_TagString: Untagged
@@ -97,6 +98,20 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 25
   m_Center: {x: 0, y: -1.6530033, z: -0.000000029802322}
+--- !u!136 &7444145599237214738
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 228721491683335433}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 1.1809222
+  m_Height: 9.513447
+  m_Direction: 1
+  m_Center: {x: 1.7763568e-15, y: -1.6530052, z: -0.00000002980233}
 --- !u!1 &2892916586220390229
 GameObject:
   m_ObjectHideFlags: 0
@@ -107,6 +122,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2553088962003525103}
   - component: {fileID: 7427074680956844879}
+  - component: {fileID: 873722621760760476}
   m_Layer: 0
   m_Name: Direction
   m_TagString: Untagged
@@ -172,6 +188,24 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   lightIntensity: 10
+  head: {fileID: 3749981403575780153}
+  rotationSpeed: 3
+--- !u!54 &873722621760760476
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2892916586220390229}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &6861282334862937626
 GameObject:
   m_ObjectHideFlags: 0
@@ -266,7 +300,7 @@ GameObject:
   - component: {fileID: 9028244766927335243}
   - component: {fileID: 4566391119238967335}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Ligth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

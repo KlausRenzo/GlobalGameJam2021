@@ -12,6 +12,9 @@ public class Beacon : MonoBehaviour
 	[SerializeField] private float lightIntensity = 1;
 	private new Light light;
 
+	[SerializeField] private Transform head;
+	[SerializeField] private float rotationSpeed;
+
 	// Start is called before the first frame update
 	void Start()
 	{
@@ -21,6 +24,10 @@ public class Beacon : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
+		if (!active)
+			head.RotateAround(transform.position, head.up, rotationSpeed);
+		else
+			head.rotation = Quaternion.Lerp(head.rotation, Quaternion.LookRotation(directionToPoint.position), rotationSpeed);
 	}
 
 
