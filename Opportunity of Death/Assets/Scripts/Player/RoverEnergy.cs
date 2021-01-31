@@ -109,9 +109,12 @@ public class RoverEnergy : MonoBehaviour
 
 	public void LosePiece()
 	{
+		if (piecesLost > roverPieces.Count)
+			return;
+
 		Energy -= 1;
 		range -= rangePerEnergy;
-
+		
 		var piece = roverPieces[piecesLost];
 
 

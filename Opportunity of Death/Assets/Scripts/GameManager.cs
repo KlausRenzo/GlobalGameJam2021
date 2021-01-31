@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
 	[SerializeField] [MinMaxSlider(0f, 2f)]
 	private Vector2 spawnDistanceRange = new Vector2(0.8f, 1.2f);
 
+	[SerializeField] private RoverUi ui;
+
 	private void Awake()
 	{
 		if (instance != null && instance != this)
@@ -28,11 +30,6 @@ public class GameManager : MonoBehaviour
 			instance = this;
 		}
 	}
-
-	private void Start()
-	{
-	}
-
 
 	public void ActivateSleepMode(Player player)
 	{
@@ -50,15 +47,19 @@ public class GameManager : MonoBehaviour
 		var randomPos = GetRandomPosition(range);
 
 		//todo cameraFade
+		ui.FadeOn(1f);
 		yield return new WaitForSeconds(1f);
-		
+
 		player.transform.position = randomPos;
 		player.transform.rotation = Quaternion.identity;
-		
+
+		yield return new WaitForSeconds(1.5f);
+
+		ui.FadeOff(1f);
+		yield return new WaitForSeconds(0.5f);
+		player.controlEnabled = true;
 		yield return new WaitForSeconds(1f);
 		//todo cameraFade
-
-		player.controlEnabled = true;
 	}
 
 	public void AddGlitch()
