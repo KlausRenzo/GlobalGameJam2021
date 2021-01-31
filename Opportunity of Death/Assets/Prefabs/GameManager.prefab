@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9162199585954574034}
   - component: {fileID: 763509992870399827}
+  - component: {fileID: 8324994668651555665}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -43,3 +44,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72552f2bc8a9d224b9fe325369648c44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  camera: {fileID: 0}
+  terrains: []
+  motherBase: {fileID: 0}
+--- !u!65 &8324994668651555665
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7314337963544782732}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4000, y: 150, z: 4000}
+  m_Center: {x: 500, y: 0, z: 500}

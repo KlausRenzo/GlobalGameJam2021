@@ -175,4 +175,22 @@ public class RoverEnergy : MonoBehaviour
 		Energy = remainingPieces;
 		range = Energy * rangePerEnergy;
 	}
+
+	public float GetMaxRangeInPercent()
+	{
+		float result = 0;
+
+		float max = 0;
+		for (int i = 0; i <= leds.Count; i++)
+		{
+			max += i * rangePerEnergy;
+		}
+
+		for (int i = 0; i <= leds.Count - piecesLost; i++)
+		{
+			result += i * rangePerEnergy;
+		}
+
+		return (result / max) * 0.8f;
+	}
 }
