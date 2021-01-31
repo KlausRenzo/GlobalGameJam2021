@@ -15,6 +15,8 @@ public class Player : MonoBehaviour
 	[SerializeField] private float speed;
 	[SerializeField] private float rotation;
 
+	[SerializeField] private ParticleSystem[] sparaFumo;
+
 	private Animator animator;
 	private RoverEnergy roverEnergy;
 	private RoverInteraction roverInteraction;
@@ -45,6 +47,7 @@ public class Player : MonoBehaviour
 		Controls();
 		AdaptToTerrain();
 		SetAnimatorParameters();
+		SmokeMachine();
 	}
 
 	private void SetAnimatorParameters()
@@ -83,5 +86,23 @@ public class Player : MonoBehaviour
 		transform.position += deltaPostion;
 		roverEnergy.LoseRange(deltaPostion.magnitude);
 		rotation += horizontalAxis * steeringSpeed * Time.deltaTime;
+	}
+
+	private void SmokeMachine()
+	{
+		if (speed > 0.1f && sparaFumo[1].isStopped)
+		{
+            for (int i = 0; i < sparaFumo.Length; i++)
+            {
+				sparaFumo[i].Play();
+            }
+		}
+		if (speed <= 0.1f && sparaFumo[1].isPlaying)
+		{
+			for (int i = 0; i < sparaFumo.Length; i++)
+			{
+				sparaFumo[i].Stop();
+			}
+		}
 	}
 }
