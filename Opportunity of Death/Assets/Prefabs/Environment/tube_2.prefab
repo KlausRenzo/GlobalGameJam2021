@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5530701982784539596}
   - component: {fileID: 8894287879243875433}
   - component: {fileID: 6668191651308253347}
+  - component: {fileID: 4712071975348957467}
   m_Layer: 0
   m_Name: tube_2
   m_TagString: Untagged
@@ -81,3 +82,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &4712071975348957467
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5155162015020061046}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 6099800089077584851, guid: c837e6e349da44d4496b9fc58b47f347, type: 3}
