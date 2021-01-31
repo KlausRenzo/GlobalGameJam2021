@@ -25,4 +25,14 @@ public class GameManager : MonoBehaviour
 		player.controlEnabled = false;
 		
 	}
+
+	public void AddGlitch()
+	{
+		
+	}
+
+	public void AddBlackFade()
+	{
+		
+	}
 }

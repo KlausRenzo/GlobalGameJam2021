@@ -1,15 +1,25 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
-using JetBrains.Annotations;
+using System.Runtime.CompilerServices;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class RoverEnergy : MonoBehaviour
 {
 	private Player player;
-	[SerializeField] private float rangePerEnergy = 200;
 
-	[SerializeField] private List<GameObject> leds;
+	[SerializeField] private int energy;
+
+	[Header("Values")] [SerializeField] private float rangePerEnergy = 200;
+	[SerializeField] [Range(0f, 1f)] private float steeringMalus = 0.7f;
+	[SerializeField] [Range(0f, 1f)] private float speedMalus = 0.7f;
+
+	[SerializeField] [Range(0f, 5f)] private float rangeDepletionFactor = 1f;
+
+
+	[Header("Led")] [SerializeField] private List<GameObject> leds;
 
 	[SerializeField] private Material off;
 	[SerializeField] private Material green;
@@ -19,8 +29,7 @@ public class RoverEnergy : MonoBehaviour
 	[SerializeField] private int orangeHealth;
 	[SerializeField] private int redHealth;
 
-	[SerializeField] private int energy;
-	[SerializeField] [Range(0f, 5f)] private float rangeDepletionFactor = 1f;
+	[Header("Pieces")] [SerializeField] private List<GameObject> roverPieces;
 
 
 	public int Energy
@@ -42,11 +51,6 @@ public class RoverEnergy : MonoBehaviour
 		energy = leds.Count;
 		range = energy * rangePerEnergy;
 		UpdateLeds(energy);
-	}
-
-	// Update is called once per frame
-	void Update()
-	{
 	}
 
 	[Button]
@@ -96,14 +100,71 @@ public class RoverEnergy : MonoBehaviour
 		range -= distance * rangeDepletionFactor;
 		range = Mathf.Max(0, range);
 
-		int e = Mathf.FloorToInt(range / rangePerEnergy);
+		int e = Mathf.CeilToInt(range / rangePerEnergy);
 		if (energy != e)
 			Energy = e;
 	}
+
+	private int piecesLost = 0;
 
 	public void LosePiece()
 	{
 		Energy -= 1;
 		range -= rangePerEnergy;
+
+		var piece = roverPieces[piecesLost];
+
+
+		switch (piecesLost)
+		{
+			case 0:
+				StartCoroutine(SpawnElement(piece, -transform.right + transform.up));
+				break;
+			case 1:
+			case 2:
+				StartCoroutine(SpawnElement(piece, transform.right + transform.up));
+				break;
+			case 3:
+				StartCoroutine(SpawnElement(piece, -transform.right + transform.up));
+				break;
+
+			case 4:
+				player.AddSteeringMalus(steeringMalus);
+				StartCoroutine(SpawnElement(piece, -transform.right + transform.up));
+				break;
+
+			case 5:
+				player.AddSpeedMalus(speedMalus);
+				StartCoroutine(SpawnElement(piece, transform.right + transform.up));
+				break;
+
+			case 6:
+				GameManager.Instance.AddGlitch();
+				StartCoroutine(SpawnElement(piece, transform.up));
+				break;
+
+			case 7:
+				GameManager.Instance.AddBlackFade();
+				StartCoroutine(SpawnElement(piece, transform.up));
+				break;
+		}
+
+		piece.SetActive(false);
+
+		piecesLost++;
+	}
+
+
+	private IEnumerator SpawnElement(GameObject piece, Vector3 direction)
+	{
+		GameObject ragdol = Instantiate(piece, piece.transform.position, piece.transform.rotation);
+		var rb = ragdol.AddComponent<Rigidbody>();
+		ragdol.layer = LayerMask.NameToLayer("onlyTerrain");
+		rb.AddForce(direction * 300);
+		rb.AddForceAtPosition(-transform.forward * 250, transform.position + transform.up);
+		ragdol.AddComponent<CapsuleCollider>();
+
+		yield return new WaitForSeconds(0.5f);
+		ragdol.layer = LayerMask.NameToLayer("Default");
 	}
 }

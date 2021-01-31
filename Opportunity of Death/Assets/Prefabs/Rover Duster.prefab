@@ -47,10 +47,46 @@ PrefabInstance:
       propertyPath: lengthInSec
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 866886723, guid: 74e7e16df3a35c94988a8ea14c223e32, type: 3}
+      propertyPath: moveWithTransform
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 866886723, guid: 74e7e16df3a35c94988a8ea14c223e32, type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 866886723, guid: 74e7e16df3a35c94988a8ea14c223e32, type: 3}
+      propertyPath: InitialModule.gravityModifier.scalar
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 866886723, guid: 74e7e16df3a35c94988a8ea14c223e32, type: 3}
+      propertyPath: EmissionModule.rateOverDistance.scalar
+      value: 300
+      objectReference: {fileID: 0}
     - target: {fileID: 5037207390609356625, guid: 74e7e16df3a35c94988a8ea14c223e32,
         type: 3}
       propertyPath: lengthInSec
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5037207390609356625, guid: 74e7e16df3a35c94988a8ea14c223e32,
+        type: 3}
+      propertyPath: moveWithTransform
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5037207390609356625, guid: 74e7e16df3a35c94988a8ea14c223e32,
+        type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5037207390609356625, guid: 74e7e16df3a35c94988a8ea14c223e32,
+        type: 3}
+      propertyPath: InitialModule.gravityModifier.scalar
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5037207390609356625, guid: 74e7e16df3a35c94988a8ea14c223e32,
+        type: 3}
+      propertyPath: EmissionModule.rateOverDistance.scalar
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 7547599827085348795, guid: 74e7e16df3a35c94988a8ea14c223e32,
         type: 3}
@@ -132,6 +168,42 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2007739628802029473}
     m_Modifications:
+    - target: {fileID: 866886723, guid: 74e7e16df3a35c94988a8ea14c223e32, type: 3}
+      propertyPath: moveWithTransform
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 866886723, guid: 74e7e16df3a35c94988a8ea14c223e32, type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 866886723, guid: 74e7e16df3a35c94988a8ea14c223e32, type: 3}
+      propertyPath: InitialModule.gravityModifier.scalar
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 866886723, guid: 74e7e16df3a35c94988a8ea14c223e32, type: 3}
+      propertyPath: EmissionModule.rateOverDistance.scalar
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 5037207390609356625, guid: 74e7e16df3a35c94988a8ea14c223e32,
+        type: 3}
+      propertyPath: moveWithTransform
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5037207390609356625, guid: 74e7e16df3a35c94988a8ea14c223e32,
+        type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5037207390609356625, guid: 74e7e16df3a35c94988a8ea14c223e32,
+        type: 3}
+      propertyPath: InitialModule.gravityModifier.scalar
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5037207390609356625, guid: 74e7e16df3a35c94988a8ea14c223e32,
+        type: 3}
+      propertyPath: EmissionModule.rateOverDistance.scalar
+      value: 300
+      objectReference: {fileID: 0}
     - target: {fileID: 7547599827085348795, guid: 74e7e16df3a35c94988a8ea14c223e32,
         type: 3}
       propertyPath: m_Name

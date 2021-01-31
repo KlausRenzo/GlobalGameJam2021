@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
 	[SerializeField] private float steeringSpeed = 1f;
 
 	[SerializeField] private LayerMask terrainLayerMask;
-	
+
 	[SerializeField] private float speed;
 	[SerializeField] private float rotation;
 
@@ -23,6 +23,9 @@ public class Player : MonoBehaviour
 
 	public bool controlEnabled = true;
 	public event Action InteractButtonPressed;
+
+	private float steeringMalus = 1f;
+	private float speedMalus = 1f;
 
 	private void Start()
 	{
@@ -39,7 +42,6 @@ public class Player : MonoBehaviour
 		{
 			controlEnabled = false;
 		}
-
 	}
 
 	private void Update()
@@ -47,6 +49,8 @@ public class Player : MonoBehaviour
 		Controls();
 		AdaptToTerrain();
 		SetAnimatorParameters();
+
+		DebugControls();
 		SmokeMachine();
 	}
 
@@ -76,16 +80,34 @@ public class Player : MonoBehaviour
 	{
 		float horizontalAxis = Input.GetAxis("Horizontal");
 		float verticalAxis = Input.GetAxis("Vertical");
-		if(Input.GetButtonDown("Interaction"))
+		if (Input.GetButtonDown("Interaction"))
 			InteractButtonPressed?.Invoke();
+
+		rotation += horizontalAxis * steeringSpeed * Time.deltaTime * steeringMalus;
 		
-
-		speed = Mathf.Lerp(speed, verticalAxis * maxSpeed, acceleration * Time.deltaTime);
-
+		speed = Mathf.Lerp(speed, verticalAxis * maxSpeed * speedMalus, acceleration * Time.deltaTime);
 		Vector3 deltaPostion = transform.forward * speed * maxSpeed;
 		transform.position += deltaPostion;
+		
 		roverEnergy.LoseRange(deltaPostion.magnitude);
-		rotation += horizontalAxis * steeringSpeed * Time.deltaTime;
+	}
+
+	public void AddSteeringMalus(float steeringMalus)
+	{
+		this.steeringMalus = steeringMalus;
+	}
+
+	public void AddSpeedMalus(float speedMalus)
+	{
+		this.speedMalus = speedMalus;
+	}
+
+	private void DebugControls()
+	{
+		if (Input.GetKeyDown(KeyCode.M))
+		{
+			roverEnergy.LosePiece();
+		}
 	}
 
 	private void SmokeMachine()
