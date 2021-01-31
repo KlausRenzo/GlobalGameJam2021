@@ -25,9 +25,12 @@ public class Beacon : MonoBehaviour
 	void Update()
 	{
 		if (!active)
-			head.RotateAround(transform.position, head.up, rotationSpeed);
+			head.Rotate(head.up, rotationSpeed);
 		else
-			head.rotation = Quaternion.Lerp(head.rotation, Quaternion.LookRotation(directionToPoint.position), rotationSpeed);
+		{
+			Quaternion lookRotation = Quaternion.LookRotation(directionToPoint.position - head.transform.position);
+			head.rotation = Quaternion.Slerp(head.rotation, lookRotation, rotationSpeed * Time.deltaTime);
+		}
 	}
 
 
@@ -86,5 +89,11 @@ public class Beacon : MonoBehaviour
 
 		active = true;
 		return true;
+	}
+
+	private void OnDrawGizmosSelected()
+	{
+		
+		Gizmos.DrawLine(head.transform.position, directionToPoint.transform.position);
 	}
 }
