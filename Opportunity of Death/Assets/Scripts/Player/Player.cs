@@ -1,7 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using Aura2API;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -26,6 +24,8 @@ public class Player : MonoBehaviour
 
 	private float steeringMalus = 1f;
 	private float speedMalus = 1f;
+	private float horizontalAxis;
+	private float verticalAxis;
 
 	private void Start()
 	{
@@ -38,20 +38,34 @@ public class Player : MonoBehaviour
 
 	private void RoverEnergyOnEnergyLost()
 	{
-		if (roverEnergy.Energy == 0)
+		if (roverEnergy.Energy <= 0)
 		{
-			controlEnabled = false;
+			GameManager.Instance.ActivateSleepMode(this);
 		}
 	}
 
 	private void Update()
 	{
-		Controls();
+		if (controlEnabled)
+			Controls();
+
+		Move();
 		AdaptToTerrain();
 		SetAnimatorParameters();
 
 		DebugControls();
 		SmokeMachine();
+	}
+
+	private void Move()
+	{
+		rotation += horizontalAxis * steeringSpeed * Time.deltaTime * steeringMalus;
+
+		speed = Mathf.Lerp(speed, verticalAxis * maxSpeed * speedMalus, acceleration * Time.deltaTime);
+		Vector3 deltaPostion = transform.forward * speed * maxSpeed;
+		transform.position += deltaPostion;
+
+		roverEnergy.LoseRange(deltaPostion.magnitude);
 	}
 
 	private void SetAnimatorParameters()
@@ -78,18 +92,14 @@ public class Player : MonoBehaviour
 
 	private void Controls()
 	{
-		float horizontalAxis = Input.GetAxis("Horizontal");
-		float verticalAxis = Input.GetAxis("Vertical");
+		horizontalAxis = Input.GetAxis("Horizontal");
+		verticalAxis = Input.GetAxis("Vertical");
+
 		if (Input.GetButtonDown("Interaction"))
 			InteractButtonPressed?.Invoke();
 
-		rotation += horizontalAxis * steeringSpeed * Time.deltaTime * steeringMalus;
-		
-		speed = Mathf.Lerp(speed, verticalAxis * maxSpeed * speedMalus, acceleration * Time.deltaTime);
-		Vector3 deltaPostion = transform.forward * speed * maxSpeed;
-		transform.position += deltaPostion;
-		
-		roverEnergy.LoseRange(deltaPostion.magnitude);
+		if (Input.GetButtonDown("Sleep"))
+			GameManager.Instance.ActivateSleepMode(this);
 	}
 
 	public void AddSteeringMalus(float steeringMalus)
@@ -114,11 +124,12 @@ public class Player : MonoBehaviour
 	{
 		if (speed > 0.1f && sparaFumo[1].isStopped)
 		{
-            for (int i = 0; i < sparaFumo.Length; i++)
-            {
+			for (int i = 0; i < sparaFumo.Length; i++)
+			{
 				sparaFumo[i].Play();
-            }
+			}
 		}
+
 		if (speed <= 0.1f && sparaFumo[1].isPlaying)
 		{
 			for (int i = 0; i < sparaFumo.Length; i++)
@@ -126,5 +137,21 @@ public class Player : MonoBehaviour
 				sparaFumo[i].Stop();
 			}
 		}
+	}
+
+	public void Sleep()
+	{
+		StartCoroutine(SlowDown());
+	}
+
+	IEnumerator SlowDown()
+	{
+		while (speed > 0.01f)
+		{
+			speed = Mathf.Lerp(speed, 0, acceleration * Time.deltaTime * 10);
+			yield return null;
+		}
+
+		roverEnergy.RecoverEnergy();
 	}
 }

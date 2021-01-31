@@ -167,4 +167,12 @@ public class RoverEnergy : MonoBehaviour
 		yield return new WaitForSeconds(0.5f);
 		ragdol.layer = LayerMask.NameToLayer("Default");
 	}
+
+	public void RecoverEnergy()
+	{
+		int remainingPieces = leds.Count - piecesLost;
+
+		Energy = remainingPieces;
+		range = Energy * rangePerEnergy;
+	}
 }

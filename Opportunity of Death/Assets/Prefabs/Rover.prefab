@@ -350,7 +350,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   energy: 0
-  rangePerEnergy: 200
+  rangePerEnergy: 500
   steeringMalus: 0.7
   speedMalus: 0.7
   rangeDepletionFactor: 1
