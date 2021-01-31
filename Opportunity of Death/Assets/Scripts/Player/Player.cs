@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -28,11 +29,14 @@ public class Player : MonoBehaviour
 	private float horizontalAxis;
 	private float verticalAxis;
 
+	private Collider collider;
+
 	private void Start()
 	{
 		roverEnergy = GetComponent<RoverEnergy>();
 		roverInteraction = GetComponent<RoverInteraction>();
 		animator = GetComponent<Animator>();
+		collider = GetComponent<Collider>();
 
 		roverEnergy.EnergyLost += RoverEnergyOnEnergyLost;
 	}
@@ -64,9 +68,10 @@ public class Player : MonoBehaviour
 
 		speed = Mathf.Lerp(speed, verticalAxis * maxSpeed * speedMalus * (debugMovement ? 8 : 1), acceleration * Time.deltaTime);
 		Vector3 deltaPostion = transform.forward * speed * maxSpeed;
-		transform.position += deltaPostion;
+		
 
-		roverEnergy.LoseRange(deltaPostion.magnitude * (debugMovement ? 1/4 : 1));
+		transform.position += deltaPostion;
+		roverEnergy.LoseRange(deltaPostion.magnitude * (debugMovement ? 1 / 4 : 1));
 	}
 
 	private void SetAnimatorParameters()
@@ -121,7 +126,6 @@ public class Player : MonoBehaviour
 		}
 
 		debugMovement = Input.GetKey(KeyCode.B);
-
 	}
 
 	private bool debugMovement;
@@ -159,5 +163,13 @@ public class Player : MonoBehaviour
 		}
 
 		roverEnergy.RecoverEnergy();
+	}
+
+	void OnCollisionEnter(Collision other)
+	{
+		if (!(other.collider is TerrainCollider))
+		{
+			speed = 0;
+		}
 	}
 }
