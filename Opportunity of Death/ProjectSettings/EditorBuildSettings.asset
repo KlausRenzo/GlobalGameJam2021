@@ -4,4 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Menu.unity
+    guid: b1e856068daf105489cf5ff8387996d7
+  - enabled: 1
+    path: Assets/Scenes/Mars_PP.unity
+    guid: 516948093f491e2469b3cf4bfce751e4
+  m_configObjects: {}
