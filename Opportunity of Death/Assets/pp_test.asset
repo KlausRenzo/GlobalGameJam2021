@@ -18,7 +18,7 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: 17.3
+    value: 15.15
   threshold:
     overrideState: 0
     value: 1
@@ -205,7 +205,7 @@ MonoBehaviour:
     value: 1
   focusDistance:
     overrideState: 1
-    value: 50
+    value: 70
   aperture:
     overrideState: 0
     value: 10
@@ -292,7 +292,7 @@ MonoBehaviour:
     value: 14
   mixerRedOutRedIn:
     overrideState: 0
-    value: 100
+    value: 200
   mixerRedOutGreenIn:
     overrideState: 0
     value: 0
@@ -304,7 +304,7 @@ MonoBehaviour:
     value: 0
   mixerGreenOutGreenIn:
     overrideState: 0
-    value: 100
+    value: 200
   mixerGreenOutBlueIn:
     overrideState: 0
     value: 0
