@@ -18,7 +18,7 @@ public class DeeJay : MonoBehaviour
     void Start()
     {
         AmbientSFXStart();
-       // AmbientMusicStart();
+       
         
         EngineInit();
     }
@@ -29,7 +29,7 @@ public class DeeJay : MonoBehaviour
         EngineRoar();
     }
 
-    private void AmbientSFXStart()
+    public void AmbientSFXStart()
     {
         boombastic_ambient.clip = ambient;
         boombastic_ambient.volume = 0;
@@ -38,7 +38,7 @@ public class DeeJay : MonoBehaviour
         StartCoroutine(FadeToMax(boombastic_ambient, fadeInTime));
     }
 
-    private void AmbientMusicStart()
+	public void AmbientMusicStart()
     {
         boombastic_music.clip = musica;
         boombastic_music.volume = 0;

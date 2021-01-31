@@ -19,6 +19,7 @@ public class Beacon : MonoBehaviour
 	void Start()
 	{
 		light = GetComponentInChildren<Light>();
+		
 	}
 
 	// Update is called once per frame
@@ -33,6 +34,8 @@ public class Beacon : MonoBehaviour
 		}
 	}
 
+	
+
 
 	private void OnTriggerEnter(Collider other)
 	{
@@ -45,7 +48,7 @@ public class Beacon : MonoBehaviour
 		StartCoroutine(FadeLigthTo(true));
 		roverInteraction.EnableBeaconActivation(this);
 
-		GameManager.Instance.BeaconText(true);
+		GameManager.Instance.ShowText("Activate Beacon");
 	}
 
 	private void OnTriggerExit(Collider other)
@@ -59,7 +62,7 @@ public class Beacon : MonoBehaviour
 		StartCoroutine(FadeLigthTo(false));
 
 		roverInteraction.DisableBeaconActivation(this);
-		GameManager.Instance.BeaconText(false);
+		GameManager.Instance.HideText();
 	}
 
 	private IEnumerator FadeLigthTo(bool b)

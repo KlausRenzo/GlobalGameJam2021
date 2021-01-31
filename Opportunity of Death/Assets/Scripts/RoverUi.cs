@@ -47,9 +47,15 @@ public class RoverUi : MonoBehaviour
 	}
 
 
-	public void BeaconText(bool b)
+	public void ShowText(string text)
 	{
-		StartCoroutine(FadeBeacon(b));
+		waypointText.text = text;
+		StartCoroutine(FadeBeacon(true));
+	}
+
+	public void HideText()
+	{
+		StartCoroutine(FadeBeacon(false));
 	}
 
 	private IEnumerator FadeBeacon(bool b)
@@ -73,5 +79,10 @@ public class RoverUi : MonoBehaviour
 		}
 
 		waypointText.color = new Color(waypointText.color.r, waypointText.color.g, waypointText.color.b, b ? 1 : 0);
+	}
+
+	public void SetFade(int i)
+	{
+		fadeImage.color = new Color(fadeImage.color.r, fadeImage.color.g, fadeImage.color.b, 0);
 	}
 }

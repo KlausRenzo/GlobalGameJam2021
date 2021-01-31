@@ -33,8 +33,27 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
+	public void Start()
+	{
+		StartCoroutine(InitialFade());
+	
+	}
+
+	private IEnumerator InitialFade()
+	{
+		yield return new WaitForSeconds(1.5f);
+		GameManager.Instance.ShowText("Opportunity, Mission Control here. Our communication dish is malfunctioning. Check it out!", 4f);
+		ui.FadeOff(1f);
+	}
+
+	private bool firstSleep = true;
 	public void ActivateSleepMode(Player player)
 	{
+		if (firstSleep)
+		{
+			firstSleep = false;
+			player.GetComponent<DeeJay>().AmbientMusicStart();
+		}	 
 		StartCoroutine(SleepModeCoroutine(player));
 	}
 
@@ -84,7 +103,6 @@ public class GameManager : MonoBehaviour
 
 	public void AddBlackFade()
 	{
-		
 	}
 
 	private Vector3 spawnPosition;
@@ -129,8 +147,28 @@ public class GameManager : MonoBehaviour
 		Gizmos.DrawLine(spawnPosition, motherBase.position);
 	}
 
-	public void BeaconText(bool b)
+	public void ShowText(string text)
 	{
-		ui.BeaconText(b);
+		ui.ShowText(text);
 	}
+
+	public void ShowText(string text, float duration)
+	{
+		StartCoroutine(TextCoroutine(text, duration));
+	}
+
+	private IEnumerator TextCoroutine(string text, float duration)
+	{
+		ui.ShowText(text);
+		yield return new WaitForSeconds(duration);
+		ui.HideText();
+	}
+
+
+	public void HideText()
+	{
+		ui.HideText();
+	}
+
+	
 }

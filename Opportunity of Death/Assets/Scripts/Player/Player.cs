@@ -39,6 +39,8 @@ public class Player : MonoBehaviour
 		collider = GetComponent<Collider>();
 
 		roverEnergy.EnergyLost += RoverEnergyOnEnergyLost;
+
+		
 	}
 
 	private void RoverEnergyOnEnergyLost()
