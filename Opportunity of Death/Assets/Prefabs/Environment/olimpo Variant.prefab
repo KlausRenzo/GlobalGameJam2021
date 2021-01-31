@@ -85,7 +85,12 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: c9271921fa4fc5645b3e67020f45f69a,
         type: 3}
       propertyPath: m_Name
-      value: olimpo
+      value: olimpo Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c9271921fa4fc5645b3e67020f45f69a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c9271921fa4fc5645b3e67020f45f69a, type: 3}

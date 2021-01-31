@@ -109,6 +109,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: gate_railing
       objectReference: {fileID: 0}
+    - target: {fileID: 6140941164517465666, guid: 1ae0bfdcfc592c84bb8bb5c8d8f4f29b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6805732744280360184, guid: 1ae0bfdcfc592c84bb8bb5c8d8f4f29b,
         type: 3}
       propertyPath: m_RootOrder

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4274901803778839524}
   - component: {fileID: 935723014541352001}
   - component: {fileID: 3105421429176658059}
+  - component: {fileID: 5429397173901733917}
   m_Layer: 0
   m_Name: Radio_Telescope
   m_TagString: Untagged
@@ -83,3 +84,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &5429397173901733917
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3465608037893032286}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 35.713196, y: 66.267586, z: 36.3123}
+  m_Center: {x: -0.0675354, y: 31.667912, z: 0}
