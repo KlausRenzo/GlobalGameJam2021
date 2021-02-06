@@ -3,12 +3,14 @@ using UnityEngine;
 
 public class DeeJay : MonoBehaviour
 {
-    [SerializeField] private AudioSource boombastic_ambient;
     [SerializeField] private AudioSource boombastic_music;
+    [SerializeField] private AudioSource boombastic_ambient;
+    [SerializeField] private AudioSource boombastic_wind;
     [SerializeField] private AudioSource autoradio; 
 
     [SerializeField] private AudioClip musica;
     [SerializeField] private AudioClip ambient;
+    [SerializeField] private AudioClip wind;
     [SerializeField] private AudioClip engine;
 
     [SerializeField] private float fadeInTime;
@@ -37,7 +39,16 @@ public class DeeJay : MonoBehaviour
         StartCoroutine(FadeToMax(boombastic_ambient, fadeInTime));
     }
 
-	public void AmbientMusicStart()
+    public void AmbientWindStart()
+    {
+        boombastic_wind.clip = wind;
+        boombastic_wind.volume = 0;
+        boombastic_wind.loop = true;
+        boombastic_wind.Play();
+        StartCoroutine(FadeToMax(boombastic_wind, fadeInTime));
+    }
+
+    public void AmbientMusicStart()
     {
         boombastic_music.clip = musica;
         boombastic_music.volume = 0;
@@ -57,11 +68,11 @@ public class DeeJay : MonoBehaviour
     {
         if (Input.GetAxis("Vertical") == 0)
         {
-            StartCoroutine(BackFadeTo(autoradio, 0.3f, 0.01f));
+            StartCoroutine(BackFadeTo(autoradio, 0.6f, 0.01f));
         }
         if (Input.GetAxis("Vertical") != 0)
         {
-            StartCoroutine(FadeToMax(autoradio, 0.01f));
+            StartCoroutine(FadeToMax(autoradio, 0.3f));
         }
 
     }
@@ -71,6 +82,7 @@ public class DeeJay : MonoBehaviour
         while (sorgente.volume < 1)
         {
             sorgente.volume += 0.01f;
+            sorgente.pitch = Mathf.Clamp(sorgente.pitch + 0.01f, 1f, 1.5f);
             yield return new WaitForSeconds(secondi);
         }
     }
@@ -80,6 +92,7 @@ public class DeeJay : MonoBehaviour
         while (sorgente.volume > volume)
         {
             sorgente.volume -= 0.01f;
+            sorgente.pitch = Mathf.Clamp(sorgente.pitch - 0.01f, 1f, 1.5f);
             yield return new WaitForSeconds(secondi);
         }
     }
